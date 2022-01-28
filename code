@@ -1,0 +1,45 @@
+import matplotlib.pyplot as plt 
+from random import randint 
+
+x = [] 
+y = [] 
+
+x.append(0) 
+y.append(0) 
+
+N = 50000
+
+curr = 0
+
+for i in range(1, N): 
+
+    # give a random number between (1-100)
+    s = randint(1, 100) 
+
+    # We have 4 equations with different probabilities to generate our fern
+    
+    # probability 0.03 
+    if s <= 3: 
+        x.append(0) 
+        y.append(0.16*(y[curr])) 
+
+     # probability 0.73
+    if s>= 4 and s<= 76: 
+        x.append(0.85*(x[curr]) + 0.04*(y[curr])) 
+        y.append(-0.04*(x[curr]) + 0.85*(y[curr])+1.6) 
+
+    # probability 0.13
+    if s>= 77 and s<= 89: 
+        x.append(-0.15*(x[curr]) + 0.28*(y[curr])) 
+        y.append(0.26*(x[curr]) + 0.24*(y[curr])+0.44) 
+
+    # probability 0.11 
+    if s>= 90 and s<= 100: 
+        x.append(0.2*(x[curr]) - 0.26*(y[curr])) 
+        y.append(0.23*(x[curr]) + 0.22*(y[curr])+1.6)
+
+    curr = curr + 1
+
+plt.scatter(x, y, s = 0.098, edgecolor ='green') 
+
+plt.show()
